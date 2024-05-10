@@ -62,6 +62,7 @@ body{
 .transactions-expenses-wrapper-grid{
   display: grid;
   grid-template-columns: auto auto auto auto auto;
+  column-gap: 2rem;
 }
 
 #grid-item-1{
@@ -71,5 +72,5 @@ body{
 
 #grid-item-2{
   grid-column-start: 4;
-  grid-column-end: 5;
+  grid-column-end: 6;
 }

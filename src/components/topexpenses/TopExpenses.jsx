@@ -1,5 +1,11 @@
+import { TopExpensesBarChart } from "./TopExpensesBarChart"
 export const TopExpenses = () => {
-    return<>
-    <h1>Top Expenses</h1>
+    return <>
+        <div>
+            <h1 style={{ color: 'white' }}><i>Top Expenses</i></h1>
+            <div style={{ backgroundColor: 'white', borderRadius: '10px'}}>
+                <TopExpensesBarChart />
+            </div>
+        </div>
     </>
 }
