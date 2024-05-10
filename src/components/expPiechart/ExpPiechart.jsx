@@ -26,14 +26,14 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 export const ExpPiechart = () => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-    const [width, setWidth] = useState(500);
+    const [width, setWidth] = useState(400);
     useEffect(() => {
         const handleResize = () => {
             setScreenWidth(window.innerWidth);
             if(window.innerWidth < 600){
                 setWidth(300);
             }else{
-                setWidth(500);
+                setWidth(400);
             }
         };
         window.addEventListener('resize', handleResize);

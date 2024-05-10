@@ -5,14 +5,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
-    margin: 3rem;
+    /* margin: 3rem; */
+    margin-top: 1.5rem;
     font-weight: 400;
     font-size: 1.8rem;
     color: white;
     padding: 2.5rem;
     position: relative;
     min-width: 20rem;
+    box-shadow: 0px 4px rgb(81, 81, 81);
 }
 
 #add-income {
@@ -20,7 +21,20 @@
     min-width: 10rem;
     border: 0;
     color: white;
-    background-color: green;
+    background: linear-gradient(to right, #B5DC53 0%, #89E149 100%);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.8rem;
+    margin-top: 2rem;
+    position: relative;
+}
+
+#add-expense {
+    border-radius: 0.8rem;
+    min-width: 10rem;
+    border: 0;
+    color: white;
+    background: linear-gradient(to right, #fe9595 0%, #ff3738 100%);
     font-weight: 600;
     font-size: 1rem;
     padding: 0.8rem;
@@ -37,7 +51,7 @@
         justify-content: center;
         align-items: center;
         padding: 2rem;
-        margin: 3rem;
+        margin: 1.5rem;
         font-weight: 400;
         font-size: 1.5rem;
         color: white;
