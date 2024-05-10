@@ -46,3 +46,11 @@ body{
   background-color: #3B3B3B;
   font-family: "Ubuntu", sans-serif;
 }
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #626262;
+  border-radius: 15px;
+}
