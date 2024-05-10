@@ -1,6 +1,7 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Legend } from 'recharts';
-
+import "./styles.css"
 const data = [
     { name: 'Group A', value: 400 },
     { name: 'Group B', value: 300 },
@@ -24,28 +25,41 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 };
 
 export const ExpPiechart = () => {
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const [width, setWidth] = useState(500);
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth);
+            if(window.innerWidth < 600){
+                setWidth(300);
+            }else{
+                setWidth(500);
+            }
+        };
+        window.addEventListener('resize', handleResize);
+        // Cleanup function to remove the event listener when the component unmounts
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     return (
-        // <ResponsiveContainer width="100%" height="100%">
-            <PieChart width={400} height={400} margin={{bottom:40}}> 
-                <Pie
-                    data={data}
-                    cx="50%"
-                    cy="55%"
-                    labelLine={false}
-                    label={renderCustomizedLabel}
-                    outerRadius={130}
-                    fill="#8884d8"
-                    dataKey="value"
-                    isAnimationActive={false}
-                >
-                    {data.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                </Pie>
-                {/* <Legend /> */}
-                <Legend layout="horizontal" align="center" verticalAlign="bottom" />
-
-            </PieChart>
-        //  </ResponsiveContainer> 
+        <PieChart width={width} height={350} margin={{ bottom: 30 }}>
+            <Pie
+                data={data}
+                cx="50%"
+                cy="55%"
+                labelLine={false}
+                label={renderCustomizedLabel}
+                outerRadius={120}
+                fill="#8884d8"
+                dataKey="value"
+                isAnimationActive={false}
+            >
+                {data.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+            </Pie>
+            <Legend layout="horizontal" align="center" verticalAlign="bottom" />
+        </PieChart>
     );
 }

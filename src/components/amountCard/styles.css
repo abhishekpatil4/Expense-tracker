@@ -1,4 +1,4 @@
-.card-wrapper{
+.card-wrapper {
     background-color: #9B9B9B;
     border-radius: 10px;
     display: flex;
@@ -8,21 +8,41 @@
     padding: 2rem;
     margin: 3rem;
     font-weight: 400;
-    font-size: 1.6rem;
-    color:white;
-    padding: 3rem;
+    font-size: 1.8rem;
+    color: white;
+    padding: 2.5rem;
     position: relative;
+    min-width: 20rem;
 }
 
-#add-income{
+#add-income {
     border-radius: 0.8rem;
     min-width: 10rem;
-    border:0;
+    border: 0;
     color: white;
     background-color: green;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding: 0.8rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
     position: relative;
+}
+
+@media only screen and (max-width: 600px) {
+    .card-wrapper {
+        background-color: #9B9B9B;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        margin: 3rem;
+        font-weight: 400;
+        font-size: 1.5rem;
+        color: white;
+        padding: 2.5rem;
+        position: relative;
+        min-width: 40vw;
+    }
 }
