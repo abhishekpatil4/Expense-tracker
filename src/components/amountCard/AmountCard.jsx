@@ -5,7 +5,7 @@ export const AmountCard = ({ type, amountValue }) => {
         {
             type === "balance" ?
                 <div className="card-wrapper">
-                    <div>Wallet Balance: ₹{amountValue}</div>
+                    <div style={{position:'relative'}}>Wallet Balance: ₹{amountValue}</div>
                     <button id="add-income">+ Add Income</button>
                 </div>
                 :

@@ -11,6 +11,7 @@
     font-size: 1.6rem;
     color:white;
     padding: 3rem;
+    position: relative;
 }
 
 #add-income{
@@ -23,4 +24,5 @@
     font-size: 0.9rem;
     padding: 0.8rem;
     margin-top: 1rem;
+    position: relative;
 }

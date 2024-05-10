@@ -51,6 +51,9 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
   background-color: #626262;
   border-radius: 15px;
+  position: relative;
+  flex-wrap: wrap;
 }
