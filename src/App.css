@@ -58,3 +58,16 @@ body{
   flex-wrap: wrap;
   box-shadow: 0px 4px rgb(51, 51, 51);
 }
+
+.transactions-expenses-wrapper-grid{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+}
+
+#grid-item-1{
+  grid-column-start: 0;
+}
+
+#grid-item-2{
+  grid-column-start: 4;
+}
