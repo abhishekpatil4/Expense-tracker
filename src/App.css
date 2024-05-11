@@ -61,7 +61,10 @@ body{
 
 .transactions-expenses-wrapper-grid{
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  /* grid-template-columns: auto auto auto auto auto; */
+  /* grid-template-columns: 20% 20% 20%; */
+  /* grid-template-columns: calc(20% - 0.4rem) calc(20% - 0.4rem) calc(20% - 0.4rem) calc(20% - 0.4rem) calc(20% - 0.4rem); */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   column-gap: 2rem;
 }
 

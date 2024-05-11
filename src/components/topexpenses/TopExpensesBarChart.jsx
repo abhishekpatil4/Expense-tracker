@@ -36,16 +36,13 @@ const data = [
 
 export const TopExpensesBarChart = () => {
     return <>
-            <BarChart width={200} height={300} data={data} layout="vertical">
-                <XAxis type="number" />
-                <YAxis type="category" dataKey="name" />
+        <ResponsiveContainer width={'99%'} height={260}>
+            <BarChart width={200} height={300} data={data} layout="vertical" barCategoryGap={10}>
+                <XAxis type="number" hide/>
+                <YAxis type="category" dataKey="name" axisLine={false}/>
                 <Tooltip />
-                <Bar dataKey="uv" fill="#8884d8" isAnimationActive={false}/>
+                <Bar dataKey="uv" fill="#8884d8" isAnimationActive={false} radius={[5, 20, 20, 5]}/>
             </BarChart>
+        </ResponsiveContainer>
     </>
 }
-
-
-{/* <BarChart width={300} height={300} data={data}>
-            <Bar dataKey="uv" fill="#8884d8" />
-        </BarChart> */}
