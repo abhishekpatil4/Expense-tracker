@@ -17,7 +17,7 @@ export const RecentTransaction = () => {
                 <Transaction name={"Pizza"} dateTime={"March 20, 2024"} price={200} />
                 <Transaction name={"Pizza"} dateTime={"March 20, 2024"} price={200} />
                 <Transaction name={"Pizza"} dateTime={"March 20, 2024"} price={200} />
-                <div style={{display:'flex', justifyContent:'center', alignItems:'center', gap:20, padding:'1rem'}}>
+                <div style={{display:'flex', justifyContent:'center', alignItems:'center', gap:20, padding:'0.8rem'}}>
                     <button style={{borderRadius:'15px', padding:'14px', border:'0px', boxShadow:'0px 2px #C3C3C3', display:'flex'}}><FaArrowLeftLong /></button>
                     <span style={{borderRadius:'10px', padding:'10px 15px', border:'0px', boxShadow:'0px 2px #C3C3C3', backgroundColor:'#43967B', color:'white', display:'flex'}}>1</span>
                     <button style={{borderRadius:'15px', padding:'14px', border:'0px', boxShadow:'0px 2px #C3C3C3', display:'flex'}}><FaArrowRightLong /></button>
