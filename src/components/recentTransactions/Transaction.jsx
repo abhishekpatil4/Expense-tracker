@@ -1,7 +1,8 @@
 import { MdOutlineCancel } from "react-icons/md";
 import { LuPencil } from "react-icons/lu";
+import { PiPizza } from "react-icons/pi";
 
-export const Transaction = ({ icon: PiPizza, name, dateTime, price }) => {
+export const Transaction = ({ name, dateTime, price }) => {
     return <>
         <div style={{ display: 'flex', alignItems: 'center', padding: '20px', justifyContent: 'space-between', borderBottom:'1px solid gray', margin:'0px 20px'}}>
             <div style={{display:'flex', alignItems:'center'}}>
