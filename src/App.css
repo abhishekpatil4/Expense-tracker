@@ -42,12 +42,12 @@
 } */
 
 
-body{
+body {
   background-color: #3B3B3B;
   font-family: "Ubuntu", sans-serif;
 }
 
-.wrapper{
+.wrapper {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -59,7 +59,7 @@ body{
   box-shadow: 0px 4px rgb(51, 51, 51);
 }
 
-.transactions-expenses-wrapper-grid{
+.transactions-expenses-wrapper-grid {
   display: grid;
   /* grid-template-columns: auto auto auto auto auto; */
   /* grid-template-columns: 20% 20% 20%; */
@@ -68,12 +68,35 @@ body{
   column-gap: 2rem;
 }
 
-#grid-item-1{
+#grid-item-1 {
   grid-column-start: 1;
   grid-column-end: 4;
 }
 
-#grid-item-2{
+#grid-item-2 {
   grid-column-start: 4;
   grid-column-end: 6;
+}
+
+@media only screen and (max-width: 900px) {
+  .transactions-expenses-wrapper-grid {
+    display: grid;
+    /* grid-template-columns: auto auto auto auto auto; */
+    /* grid-template-columns: 20% 20% 20%; */
+    /* grid-template-columns: calc(20% - 0.4rem) calc(20% - 0.4rem) calc(20% - 0.4rem) calc(20% - 0.4rem) calc(20% - 0.4rem); */
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    column-gap: 2rem;
+  }
+
+  #grid-item-1 {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: 1;
+  }
+
+  #grid-item-2 {
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-column-end: 1;
+  }
 }
