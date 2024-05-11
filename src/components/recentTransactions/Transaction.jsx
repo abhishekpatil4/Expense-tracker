@@ -13,7 +13,7 @@ export const Transaction = ({ name, dateTime, price }) => {
                 </div>
             </div>
             <div style={{display:'flex', justifyContent:'space-evenly', alignItems:'center', minWidth:'9rem'}}>
-                <span style={{color:'#F4BB4A'}}>${price}</span>
+                <span style={{color:'#F4BB4A'}}>₹{price}</span>
                 <button style={{padding:'6px', borderRadius:'14px', border:'0px', backgroundColor:'#FE3F3E', color:'white', display:'flex', boxShadow:'0px 2px #C1C1C1' }}><MdOutlineCancel style={{fontSize:'22px'}}/></button>
                 <button style={{padding:'6px', borderRadius:'14px', border:'0px', backgroundColor:'#F4BB4A', color:'white', display:'flex', boxShadow:'0px 2px #C1C1C1' }}><LuPencil style={{fontSize:'22px'}}/></button>
             </div>
