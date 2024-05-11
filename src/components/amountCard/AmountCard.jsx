@@ -29,24 +29,22 @@ export const AmountCard = ({ type }) => {
                             padding:'1.5rem 2rem'
                         }
                     }}>
-                        <div style={{display:'flex', flexDirection:'column', gap:'1rem'}}>
+                        <div style={{display:'flex', flexDirection:'column', gap:'0.5rem'}}>
                             <h1>Add Balance</h1>
                             <div style={{display:'flex', justifyContent:'space-between'}}>
                                 <input type="text" placeholder="Income Amount" style={{
                                     borderRadius:'10px',
-                                    padding:'12px',
                                     border:'0px',
                                     boxShadow:'0px 3px #C1C1C1C1',
                                     width:'15rem',
                                     fontSize:'1.2rem',
-                                    padding:'0.8rem'
+                                    padding:'0.8rem',
                                 }}/>
                                 <button style={{
                                     backgroundColor: '#F4BB4A',
                                     border:'0px',
                                     borderRadius:'10px',
                                     color:'white',
-                                    padding:'12px',
                                     boxShadow:'0px 3px #C1C1C1C1',
                                     fontSize:'1.2rem',
                                     padding:'0.8rem'
@@ -56,7 +54,6 @@ export const AmountCard = ({ type }) => {
                                     border:'0px',
                                     borderRadius:'10px',
                                     color:'black',
-                                    padding:'12px',
                                     boxShadow:'0px 3px #C1C1C1C1',
                                     fontSize:'1.2rem',
                                     padding:'0.8rem'

@@ -60,3 +60,13 @@
         min-width: 40vw;
     }
 }
+
+.add-balance-card {
+    border-Radius: '10px';
+    padding: '12px';
+    border: '0px';
+    box-shadow: '0px 3px #C1C1C1C1';
+    width: '15rem';
+    font-Size: '1.2rem';
+    padding: '0.8rem'
+}
