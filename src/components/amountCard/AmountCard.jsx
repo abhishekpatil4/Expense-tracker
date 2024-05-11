@@ -1,16 +1,23 @@
 import "./styles.css"
-
-export const AmountCard = ({ type, amountValue }) => {
+import { useState, useEffect } from "react"
+export const AmountCard = ({ type }) => {
+    const [amount, setAmount] = useState({
+        currentBalance: 0,
+        currentExpenses: 0
+    });
+    useEffect(() => {
+        setAmount(JSON.parse(localStorage.getItem("currentAmount")));
+    }, [])
     return <>
         {
             type === "balance" ?
                 <div className="card-wrapper">
-                    <div style={{ position: 'relative' }}>Wallet Balance: <span style={{ fontWeight: 500, color:'#9DFF5B' }}>₹{amountValue}</span></div>
+                    <div>Wallet Balance: <span style={{ fontWeight: 500, color: '#9DFF5B' }}>₹{amount && amount.currentBalance}</span></div>
                     <button id="add-income">+ Add Income</button>
                 </div>
                 :
                 <div className="card-wrapper">
-                    <div>Expenses: <span style={{ fontWeight: 500, color:'#F4BB4A' }}>₹{amountValue}</span></div>
+                    <div>Expenses: <span style={{ fontWeight: 500, color: '#F4BB4A' }}>₹{amount && amount.currentExpenses}</span></div>
                     <button id="add-expense">+ Add Expense</button>
                 </div>
 
