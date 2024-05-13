@@ -87,8 +87,6 @@ export const AmountCard = ({ type }) => {
                                     padding: '0.8rem',
                                 }}
                                     name="balance"
-                                // value={newBalance}
-                                // onChange={(e) => setNewBalance(e.target.value)}
                                 />
                                 <div style={{ display: 'flex', justifyContent: 'space-around', minWidth: '240px' }}>
                                     <button style={{
