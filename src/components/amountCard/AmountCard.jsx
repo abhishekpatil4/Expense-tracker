@@ -29,16 +29,19 @@ export const AmountCard = ({ type }) => {
         console.log(category);
         console.log(getFormattedDate(dateTime));
 
-        console.log(JSON.parse(localStorage.getItem("currentAmount"))); 
+        console.log(JSON.parse(localStorage.getItem("currentAmount")));
 
         setExpenseModelOpen(false)
     }
-    const handleAddBalance = () => {
+    const handleAddBalance = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const payLoad = Object.fromEntries(formData);
         const currentAmount = JSON.parse(localStorage.getItem("currentAmount"));
-        if (newBalance == "") {
+        if (payLoad == null) {
             alert("Enter valid amount");
         } else {
-            currentAmount.currentBalance = Number(currentAmount.currentBalance) + Number(newBalance);
+            currentAmount.currentBalance = Number(currentAmount.currentBalance) + Number(payLoad.balance);
             localStorage.setItem("currentAmount", JSON.stringify(currentAmount));
             setAmount(JSON.parse(localStorage.getItem("currentAmount")));
             setBalanceModelOpen(false)
@@ -67,8 +70,8 @@ export const AmountCard = ({ type }) => {
                     }}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                             <h1>Add Balance</h1>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
-                                <input required type="text" placeholder="Income Amount" style={{
+                            <form onSubmit={handleAddBalance} style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
+                                <input required type="number" placeholder="Income Amount" style={{
                                     borderRadius: '10px',
                                     border: '0px',
                                     boxShadow: '0px 3px #C1C1C1C1',
@@ -76,8 +79,9 @@ export const AmountCard = ({ type }) => {
                                     fontSize: '1.2rem',
                                     padding: '0.8rem',
                                 }}
-                                    value={newBalance}
-                                    onChange={(e) => setNewBalance(e.target.value)}
+                                    name="balance"
+                                // value={newBalance}
+                                // onChange={(e) => setNewBalance(e.target.value)}
                                 />
                                 <div style={{ display: 'flex', justifyContent: 'space-around', minWidth: '240px' }}>
                                     <button style={{
@@ -89,7 +93,8 @@ export const AmountCard = ({ type }) => {
                                         fontSize: '1.2rem',
                                         padding: '0.8rem'
                                     }}
-                                        onClick={handleAddBalance}
+                                        type="submit"
+                                    // onClick={handleAddBalance}
                                     >Add Balance</button>
                                     <button style={{
                                         backgroundColor: '#E2E2E2',
@@ -101,7 +106,7 @@ export const AmountCard = ({ type }) => {
                                         padding: '0.8rem'
                                     }} onClick={() => setBalanceModelOpen(false)}>Cancel</button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </ReactModal>
                     <div>Wallet Balance: <span style={{ fontWeight: 500, color: '#9DFF5B' }}>₹{amount && amount.currentBalance}</span></div>
