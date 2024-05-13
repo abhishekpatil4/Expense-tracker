@@ -12,6 +12,13 @@ export const AmountCard = ({ type }) => {
     const [category, setCategory] = useState();
     const [dateTime, setDateTime] = useState();
 
+    const getFormattedDate = (dateString) => {
+        const date = new Date(dateString);
+        const options = { month: "long", day: "numeric", year: "numeric" };
+        const formattedDate = date.toLocaleDateString("en-US", options);
+        return formattedDate;
+    }
+
     const [amount, setAmount] = useState({
         currentBalance: 0,
         currentExpenses: 0
@@ -20,7 +27,10 @@ export const AmountCard = ({ type }) => {
         console.log(title);
         console.log(price);
         console.log(category);
-        console.log(dateTime);
+        console.log(getFormattedDate(dateTime));
+
+        console.log(JSON.parse(localStorage.getItem("currentAmount"))); 
+
         setExpenseModelOpen(false)
     }
     const handleAddBalance = () => {
@@ -41,7 +51,7 @@ export const AmountCard = ({ type }) => {
         {
             type === "balance" ?
                 <div className="card-wrapper">
-                    <ReactModal isOpen={balanceModelOpen} style={{
+                    <ReactModal ariaHideApp={false} isOpen={balanceModelOpen} style={{
                         content: {
                             display: 'flex',
                             justifyContent: 'center',
@@ -58,7 +68,7 @@ export const AmountCard = ({ type }) => {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                             <h1>Add Balance</h1>
                             <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
-                                <input type="text" placeholder="Income Amount" style={{
+                                <input required type="text" placeholder="Income Amount" style={{
                                     borderRadius: '10px',
                                     border: '0px',
                                     boxShadow: '0px 3px #C1C1C1C1',
@@ -99,7 +109,7 @@ export const AmountCard = ({ type }) => {
                 </div>
                 :
                 <div className="card-wrapper">
-                    <ReactModal isOpen={expenseModelOpen} style={{
+                    <ReactModal ariaHideApp={false} isOpen={expenseModelOpen} style={{
                         content: {
                             display: 'flex',
                             justifyContent: 'center',
@@ -148,7 +158,7 @@ export const AmountCard = ({ type }) => {
                                 </div>
                                 {/* (2/2) 2 flexbox for input elements */}
                                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                                    <input type="dropdown" placeholder="Select Category" style={{
+                                    {/* <input type="dropdown" placeholder="Select Category" style={{
                                         borderRadius: '10px',
                                         border: '0px',
                                         boxShadow: '0px 3px #C1C1C1C1',
@@ -159,15 +169,41 @@ export const AmountCard = ({ type }) => {
                                     }}
                                         value={category}
                                         onChange={(e) => setCategory(e.target.value)}
-                                    />
-                                    <input type="text" placeholder="dd/mm/yyyy" style={{
+                                    /> */}
+                                    <select
+                                        value={category}
+                                        onChange={(e) => {
+                                            const option = e.target.value;
+                                            setCategory(option);
+                                            // onSelect(option);
+                                        }}
+                                        style={{
+                                            borderRadius: '10px',
+                                            border: '0px',
+                                            boxShadow: '0px 3px #C1C1C1C1',
+                                            width: '14rem',
+                                            fontSize: '1.2rem',
+                                            padding: '0.8rem 0.8rem 0.8rem 0.8rem',
+                                            margin: "0.5rem 0.5rem",
+                                            color: 'gray'
+                                        }}
+                                    >
+                                        <option value="">Select a category</option>
+                                        <option value="food">Food</option>
+                                        <option value="entertainment">Entertainment</option>
+                                        <option value="travel">Travel</option>
+                                        <option value="education">Education</option>
+                                        <option value="fitness">Fitness</option>
+                                    </select>
+                                    <input type="date" placeholder="dd/mm/yyyy" style={{
                                         borderRadius: '10px',
                                         border: '0px',
                                         boxShadow: '0px 3px #C1C1C1C1',
                                         width: '12rem',
                                         fontSize: '1.2rem',
                                         padding: '0.8rem',
-                                        margin: "0.5rem 0.5rem"
+                                        margin: "0.5rem 0.5rem",
+                                        color: 'gray'
                                     }}
                                         value={dateTime}
                                         onChange={(e) => setDateTime(e.target.value)}
