@@ -18,19 +18,27 @@ export const AmountCard = ({ type }) => {
         currentBalance: 0,
         currentExpenses: 0
     });
+
     const handleAddExpense = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const payLoad = Object.fromEntries(formData);
-        console.log("payLoad: ", payLoad);
-        // console.log(title);
-        // console.log(price);
-        // console.log(category);
-        // console.log(getFormattedDate(dateTime));
-
-        // console.log(JSON.parse(localStorage.getItem("currentAmount")));
-
-        setExpenseModelOpen(false)
+        const currentAmount = JSON.parse(localStorage.getItem("currentAmount"));
+        currentAmount.currentBalance = Number(currentAmount.currentBalance) -  Number(payLoad.price);
+        currentAmount.currentExpenses = Number(currentAmount.currentExpenses) +  Number(payLoad.price);
+        localStorage.setItem("currentAmount", JSON.stringify(currentAmount));
+        setAmount(JSON.parse(localStorage.getItem("currentAmount")));
+        if (localStorage.getItem("transactions") === null) {
+            const arr = [];
+            arr.push(payLoad);
+            localStorage.setItem("transactions", JSON.stringify(arr));
+        } else {
+            const tempArr = JSON.parse(localStorage.getItem("transactions"));
+            tempArr.push(payLoad);
+            localStorage.setItem("transactions", JSON.stringify(tempArr));
+        }
+        window.location.reload();
+        setExpenseModelOpen(false);
     }
     const handleAddBalance = (e) => {
         e.preventDefault();
@@ -108,7 +116,7 @@ export const AmountCard = ({ type }) => {
                             </form>
                         </div>
                     </ReactModal>
-                    <div>Wallet Balance: <span style={{ fontWeight: 500, color: '#9DFF5B' }}>₹{amount && amount.currentBalance}</span></div>
+                    <div>Wallet Balance: <span style={{ fontWeight: 500, color: '#9DFF5B' }}>₹{amount ? amount.currentBalance : 0}</span></div>
                     <button id="add-income" onClick={() => setBalanceModelOpen(true)}>+ Add Income</button>
                 </div>
                 :
@@ -145,7 +153,7 @@ export const AmountCard = ({ type }) => {
                                         margin: "0.5rem 0.5rem"
                                     }}
                                         name="title"
-                                        required    
+                                        required
                                     />
                                     <input type="number" placeholder="Price" style={{
                                         borderRadius: '10px',
@@ -156,7 +164,7 @@ export const AmountCard = ({ type }) => {
                                         padding: '0.8rem',
                                         margin: "0.5rem 0.5rem"
                                     }}
-                                        name="value"
+                                        name="price"
                                         required
                                     />
                                 </div>
