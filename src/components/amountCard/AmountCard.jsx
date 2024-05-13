@@ -7,11 +7,6 @@ export const AmountCard = ({ type }) => {
     const [expenseModelOpen, setExpenseModelOpen] = useState(false);
     const [newBalance, setNewBalance] = useState();
 
-    const [title, setTitle] = useState();
-    const [price, setPrice] = useState();
-    const [category, setCategory] = useState();
-    const [dateTime, setDateTime] = useState();
-
     const getFormattedDate = (dateString) => {
         const date = new Date(dateString);
         const options = { month: "long", day: "numeric", year: "numeric" };
@@ -23,13 +18,17 @@ export const AmountCard = ({ type }) => {
         currentBalance: 0,
         currentExpenses: 0
     });
-    const handleAddExpense = () => {
-        console.log(title);
-        console.log(price);
-        console.log(category);
-        console.log(getFormattedDate(dateTime));
+    const handleAddExpense = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const payLoad = Object.fromEntries(formData);
+        console.log("payLoad: ", payLoad);
+        // console.log(title);
+        // console.log(price);
+        // console.log(category);
+        // console.log(getFormattedDate(dateTime));
 
-        console.log(JSON.parse(localStorage.getItem("currentAmount")));
+        // console.log(JSON.parse(localStorage.getItem("currentAmount")));
 
         setExpenseModelOpen(false)
     }
@@ -130,7 +129,7 @@ export const AmountCard = ({ type }) => {
                     }}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                             <h1>Add Balance</h1>
-                            <div style={{
+                            <form onSubmit={handleAddExpense} style={{
                                 display: 'flex',
                                 flexDirection: 'column',
                             }}>
@@ -145,10 +144,10 @@ export const AmountCard = ({ type }) => {
                                         padding: '0.8rem',
                                         margin: "0.5rem 0.5rem"
                                     }}
-                                        value={title}
-                                        onChange={(e) => setTitle(e.target.value)}
+                                        name="title"
+                                        required    
                                     />
-                                    <input type="text" placeholder="Price" style={{
+                                    <input type="number" placeholder="Price" style={{
                                         borderRadius: '10px',
                                         border: '0px',
                                         boxShadow: '0px 3px #C1C1C1C1',
@@ -157,31 +156,15 @@ export const AmountCard = ({ type }) => {
                                         padding: '0.8rem',
                                         margin: "0.5rem 0.5rem"
                                     }}
-                                        value={price}
-                                        onChange={(e) => setPrice(e.target.value)}
+                                        name="value"
+                                        required
                                     />
                                 </div>
                                 {/* (2/2) 2 flexbox for input elements */}
                                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                                    {/* <input type="dropdown" placeholder="Select Category" style={{
-                                        borderRadius: '10px',
-                                        border: '0px',
-                                        boxShadow: '0px 3px #C1C1C1C1',
-                                        width: '12rem',
-                                        fontSize: '1.2rem',
-                                        padding: '0.8rem',
-                                        margin: "0.5rem 0.5rem"
-                                    }}
-                                        value={category}
-                                        onChange={(e) => setCategory(e.target.value)}
-                                    /> */}
                                     <select
-                                        value={category}
-                                        onChange={(e) => {
-                                            const option = e.target.value;
-                                            setCategory(option);
-                                            // onSelect(option);
-                                        }}
+                                        name="category"
+                                        required
                                         style={{
                                             borderRadius: '10px',
                                             border: '0px',
@@ -210,8 +193,8 @@ export const AmountCard = ({ type }) => {
                                         margin: "0.5rem 0.5rem",
                                         color: 'gray'
                                     }}
-                                        value={dateTime}
-                                        onChange={(e) => setDateTime(e.target.value)}
+                                        required
+                                        name="dateTime"
                                     />
                                 </div>
 
@@ -227,8 +210,8 @@ export const AmountCard = ({ type }) => {
                                         padding: '0.8rem',
                                         margin: "0.5rem 0.5rem"
                                     }}
-                                        onClick={handleAddExpense}
-                                    >Add Balance</button>
+                                        type="submit"
+                                    >Add Expense</button>
                                     <button style={{
                                         backgroundColor: '#E2E2E2',
                                         border: '0px',
@@ -240,7 +223,7 @@ export const AmountCard = ({ type }) => {
                                         margin: "0.5rem 0.5rem"
                                     }} onClick={() => setExpenseModelOpen(false)}>Cancel</button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </ReactModal>
                     <div>Expenses: <span style={{ fontWeight: 500, color: '#F4BB4A' }}>₹{amount && amount.currentExpenses}</span></div>
