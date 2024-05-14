@@ -5,12 +5,6 @@ import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 export const Transaction = ({ id, name, dateTime, price }) => {
     const [expenseModelOpen, setExpenseModelOpen] = useState(false);
-    const [preFilledData, setPreFilledData] = useState({
-        "title": "",
-        "price": "",
-        "category": "",
-        "dateTime": ""
-    });
     const handleDelete = () => {
         const arrayOfObjects = Object.values(JSON.parse(localStorage.getItem("transactions")));
         const indexToDelete = id;
