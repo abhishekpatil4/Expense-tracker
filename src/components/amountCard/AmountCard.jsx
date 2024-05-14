@@ -185,8 +185,6 @@ export const AmountCard = ({ type }) => {
                                         <option value="food">Food</option>
                                         <option value="entertainment">Entertainment</option>
                                         <option value="travel">Travel</option>
-                                        <option value="education">Education</option>
-                                        <option value="fitness">Fitness</option>
                                     </select>
                                     <input type="date" placeholder="dd/mm/yyyy" style={{
                                         borderRadius: '10px',
