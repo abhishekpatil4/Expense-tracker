@@ -3,22 +3,25 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { Transaction } from "./Transaction";
 import { useState } from "react";
 import { LuArrowLeftRight } from "react-icons/lu";
+import { useSnackbar } from 'notistack'
+
 
 export const RecentTransaction = () => {
+    const { enqueueSnackbar } = useSnackbar()
     const [pageNo, setPageNo] = useState(0);
     const [transactionData, setTransactionData] = useState();
     const handleNext = () => {
         if ((pageNo * 3) + 3 < transactionData.length) {
             setPageNo((prev) => prev + 1);
         } else {
-            alert("No more transactions!");
+            enqueueSnackbar("You're already in last page!", {variant:"warning"});
         }
     }
     const hanlePrev = () => {
         if(pageNo !== 0){
             setPageNo((prev) => prev - 1);
         }else{
-            alert("You're already in page 1!");
+            enqueueSnackbar("You're already in first page!", {variant:"warning"});
         }
     }
     useState(() => {

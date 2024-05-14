@@ -5,6 +5,7 @@ import { MdOutlineCardTravel } from "react-icons/md";
 import { BiMoviePlay } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
+import { useSnackbar } from 'notistack'
 
 const getFormattedDate = (dateString) => {
     const date = new Date(dateString);
@@ -15,12 +16,14 @@ const getFormattedDate = (dateString) => {
 
 export const Transaction = ({ id, name, dateTime, price, category }) => {
     const [expenseModelOpen, setExpenseModelOpen] = useState(false);
+    const { enqueueSnackbar } = useSnackbar();
     const handleDelete = () => {
         const arrayOfObjects = Object.values(JSON.parse(localStorage.getItem("transactions")));
         const indexToDelete = id;
         arrayOfObjects.splice(indexToDelete, 1);
         localStorage.setItem("transactions", JSON.stringify(arrayOfObjects));
         window.location.reload();
+        enqueueSnackbar("Transaction deleted!", { variant: "success" });
     }
     //to update state variables (form prefill)
     const [Ftitle, setTitle] = useState();
@@ -31,19 +34,23 @@ export const Transaction = ({ id, name, dateTime, price, category }) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const payLoad = Object.fromEntries(formData);
-        console.log("payLoad: ", payLoad);
         const objs = JSON.parse(localStorage.getItem("transactions"));
-        const tempPrice = objs[id].price;
-        objs[id].title = payLoad.title;
-        objs[id].price = payLoad.price;
-        objs[id].category = payLoad.category;
-        objs[id].dateTime = payLoad.dateTime;
-        localStorage.setItem("transactions", JSON.stringify(objs));
-
         const currentAmount = JSON.parse(localStorage.getItem("currentAmount"));
-        currentAmount.currentExpenses = Number(currentAmount.currentExpenses) + Number(payLoad.price) - Number(tempPrice);
-        currentAmount.currentBalance = Number(currentAmount.currentBalance) - Number(payLoad.price) + Number(tempPrice);
-        localStorage.setItem("currentAmount", JSON.stringify(currentAmount));
+        if (Number(currentAmount.currentBalance) < Number(objs[id].price)) {
+            enqueueSnackbar("Insufficient funds!", { variant: "error" });
+        } else {
+            const tempPrice = objs[id].price;
+            objs[id].title = payLoad.title;
+            objs[id].price = payLoad.price;
+            objs[id].category = payLoad.category;
+            objs[id].dateTime = payLoad.dateTime;
+            localStorage.setItem("transactions", JSON.stringify(objs));
+
+            currentAmount.currentExpenses = Number(currentAmount.currentExpenses) + Number(payLoad.price) - Number(tempPrice);
+            currentAmount.currentBalance = Number(currentAmount.currentBalance) - Number(payLoad.price) + Number(tempPrice);
+            localStorage.setItem("currentAmount", JSON.stringify(currentAmount));
+            enqueueSnackbar("Transaction updated!", { variant: "success" });
+        }
         window.location.reload();
     }
     useEffect(() => {

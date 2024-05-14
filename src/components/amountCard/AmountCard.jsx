@@ -1,8 +1,10 @@
 import "./styles.css"
 import { useState, useEffect } from "react"
 import ReactModal from "react-modal";
+import { useSnackbar } from 'notistack'
 
 export const AmountCard = ({ type }) => {
+    const { enqueueSnackbar } = useSnackbar();
     const [balanceModelOpen, setBalanceModelOpen] = useState(false);
     const [expenseModelOpen, setExpenseModelOpen] = useState(false);
     const [newBalance, setNewBalance] = useState();
@@ -16,20 +18,25 @@ export const AmountCard = ({ type }) => {
         const formData = new FormData(e.target);
         const payLoad = Object.fromEntries(formData);
         const currentAmount = JSON.parse(localStorage.getItem("currentAmount"));
-        currentAmount.currentBalance = Number(currentAmount.currentBalance) - Number(payLoad.price);
-        currentAmount.currentExpenses = Number(currentAmount.currentExpenses) + Number(payLoad.price);
-        localStorage.setItem("currentAmount", JSON.stringify(currentAmount));
-        setAmount(JSON.parse(localStorage.getItem("currentAmount")));
-        if (localStorage.getItem("transactions") === null) {
-            const arr = [];
-            arr.push(payLoad);
-            localStorage.setItem("transactions", JSON.stringify(arr));
+        if (Number(currentAmount.currentBalance) < Number(payLoad.price)) {
+            enqueueSnackbar("Insufficient funds!", { variant: "error" });
         } else {
-            const tempArr = JSON.parse(localStorage.getItem("transactions"));
-            tempArr.push(payLoad);
-            localStorage.setItem("transactions", JSON.stringify(tempArr));
+            currentAmount.currentBalance = Number(currentAmount.currentBalance) - Number(payLoad.price);
+            currentAmount.currentExpenses = Number(currentAmount.currentExpenses) + Number(payLoad.price);
+            localStorage.setItem("currentAmount", JSON.stringify(currentAmount));
+            setAmount(JSON.parse(localStorage.getItem("currentAmount")));
+            if (localStorage.getItem("transactions") === null) {
+                const arr = [];
+                arr.push(payLoad);
+                localStorage.setItem("transactions", JSON.stringify(arr));
+            } else {
+                const tempArr = JSON.parse(localStorage.getItem("transactions"));
+                tempArr.push(payLoad);
+                localStorage.setItem("transactions", JSON.stringify(tempArr));
+            }
+            window.location.reload();
+            enqueueSnackbar("Expense added", { variant: "success" });
         }
-        window.location.reload();
         setExpenseModelOpen(false);
     }
     const handleAddBalance = (e) => {
@@ -45,6 +52,7 @@ export const AmountCard = ({ type }) => {
             setAmount(JSON.parse(localStorage.getItem("currentAmount")));
             setBalanceModelOpen(false)
         }
+        enqueueSnackbar("Balance added", { variant: "success" });
     }
     useEffect(() => {
         if (localStorage.getItem("currentAmount") === null) {
