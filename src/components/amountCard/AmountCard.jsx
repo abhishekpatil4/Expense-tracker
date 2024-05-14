@@ -6,14 +6,6 @@ export const AmountCard = ({ type }) => {
     const [balanceModelOpen, setBalanceModelOpen] = useState(false);
     const [expenseModelOpen, setExpenseModelOpen] = useState(false);
     const [newBalance, setNewBalance] = useState();
-
-    const getFormattedDate = (dateString) => {
-        const date = new Date(dateString);
-        const options = { month: "long", day: "numeric", year: "numeric" };
-        const formattedDate = date.toLocaleDateString("en-US", options);
-        return formattedDate;
-    }
-
     const [amount, setAmount] = useState({
         currentBalance: 0,
         currentExpenses: 0
@@ -24,8 +16,8 @@ export const AmountCard = ({ type }) => {
         const formData = new FormData(e.target);
         const payLoad = Object.fromEntries(formData);
         const currentAmount = JSON.parse(localStorage.getItem("currentAmount"));
-        currentAmount.currentBalance = Number(currentAmount.currentBalance) -  Number(payLoad.price);
-        currentAmount.currentExpenses = Number(currentAmount.currentExpenses) +  Number(payLoad.price);
+        currentAmount.currentBalance = Number(currentAmount.currentBalance) - Number(payLoad.price);
+        currentAmount.currentExpenses = Number(currentAmount.currentExpenses) + Number(payLoad.price);
         localStorage.setItem("currentAmount", JSON.stringify(currentAmount));
         setAmount(JSON.parse(localStorage.getItem("currentAmount")));
         if (localStorage.getItem("transactions") === null) {
@@ -55,6 +47,13 @@ export const AmountCard = ({ type }) => {
         }
     }
     useEffect(() => {
+        if (localStorage.getItem("currentAmount") === null) {
+            const obj = {
+                "currentBalance": 5000,
+                "currentExpenses": 0
+            }
+            localStorage.setItem("currentAmount", JSON.stringify(obj));
+        }
         setAmount(JSON.parse(localStorage.getItem("currentAmount")));
     }, [])
     return <>
