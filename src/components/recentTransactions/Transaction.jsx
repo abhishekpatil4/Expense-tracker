@@ -3,6 +3,14 @@ import { LuPencil } from "react-icons/lu";
 import { PiPizza } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
+
+const getFormattedDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { month: "long", day: "numeric", year: "numeric" };
+    const formattedDate = date.toLocaleDateString("en-US", options);
+    return formattedDate;
+}
+
 export const Transaction = ({ id, name, dateTime, price }) => {
     const [expenseModelOpen, setExpenseModelOpen] = useState(false);
     const handleDelete = () => {
@@ -165,7 +173,7 @@ export const Transaction = ({ id, name, dateTime, price }) => {
                 <PiPizza style={{ fontSize: '25px', backgroundColor: '#D9D9D9', borderRadius: '100%', padding: '8px' }} />
                 <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'space-between' }}>
                     <span>{name}</span>
-                    <span style={{ fontWeight: 300, color: '#9B9B9B' }}>{dateTime}</span>
+                    <span style={{ fontWeight: 300, color: '#9B9B9B' }}>{getFormattedDate(dateTime)}</span>
                 </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', minWidth: '9rem' }}>
