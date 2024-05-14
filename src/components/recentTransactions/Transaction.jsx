@@ -1,6 +1,8 @@
 import { MdOutlineCancel } from "react-icons/md";
 import { LuPencil } from "react-icons/lu";
 import { PiPizza } from "react-icons/pi";
+import { MdOutlineCardTravel } from "react-icons/md";
+import { BiMoviePlay } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 
@@ -11,7 +13,7 @@ const getFormattedDate = (dateString) => {
     return formattedDate;
 }
 
-export const Transaction = ({ id, name, dateTime, price }) => {
+export const Transaction = ({ id, name, dateTime, price, category }) => {
     const [expenseModelOpen, setExpenseModelOpen] = useState(false);
     const handleDelete = () => {
         const arrayOfObjects = Object.values(JSON.parse(localStorage.getItem("transactions")));
@@ -170,7 +172,16 @@ export const Transaction = ({ id, name, dateTime, price }) => {
                 </div>
             </ReactModal>
             <div style={{ display: 'flex', justifyContent: 'space-between', minWidth: '10.5rem' }}>
-                <PiPizza style={{ fontSize: '25px', backgroundColor: '#D9D9D9', borderRadius: '100%', padding: '8px' }} />
+                {
+                    category === "food" && <PiPizza style={{ fontSize: '25px', backgroundColor: '#D9D9D9', borderRadius: '100%', padding: '8px' }} />
+                }
+                {
+                    category === "entertainment" && <BiMoviePlay style={{ fontSize: '25px', backgroundColor: '#D9D9D9', borderRadius: '100%', padding: '8px' }} />
+                }
+                {
+                    category === "travel" && <MdOutlineCardTravel style={{ fontSize: '25px', backgroundColor: '#D9D9D9', borderRadius: '100%', padding: '8px' }} />
+                }
+
                 <div style={{ display: "flex", flexDirection: 'column', justifyContent: 'space-between' }}>
                     <span>{name}</span>
                     <span style={{ fontWeight: 300, color: '#9B9B9B' }}>{getFormattedDate(dateTime)}</span>

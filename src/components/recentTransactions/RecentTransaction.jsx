@@ -30,7 +30,7 @@ export const RecentTransaction = () => {
             <div style={{ backgroundColor: 'white', borderRadius: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 {transactionData ?
                     transactionData.slice(pageNo * 3, (pageNo * 3) + 3).map((transactionData, idx) =>
-                        <Transaction key={idx} id={idx} name={transactionData.title} dateTime={transactionData.dateTime} price={transactionData.price} />
+                        <Transaction key={idx} id={idx} name={transactionData.title} dateTime={transactionData.dateTime} price={transactionData.price} category={transactionData.category} />
                     )
                     :
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '150px' }}>
