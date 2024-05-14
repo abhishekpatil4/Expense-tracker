@@ -28,7 +28,7 @@ export const RecentTransaction = () => {
         <div>
             <h1 style={{ color: 'white' }}><i>Recent Transactions</i></h1>
             <div style={{ backgroundColor: 'white', borderRadius: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                {transactionData ?
+                {transactionData && transactionData.length >0 ?
                     transactionData.slice(pageNo * 3, (pageNo * 3) + 3).map((transactionData, idx) =>
                         <Transaction key={idx} id={idx} name={transactionData.title} dateTime={transactionData.dateTime} price={transactionData.price} category={transactionData.category} />
                     )

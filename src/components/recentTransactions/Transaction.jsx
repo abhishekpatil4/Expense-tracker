@@ -33,11 +33,17 @@ export const Transaction = ({ id, name, dateTime, price, category }) => {
         const payLoad = Object.fromEntries(formData);
         console.log("payLoad: ", payLoad);
         const objs = JSON.parse(localStorage.getItem("transactions"));
+        const tempPrice = objs[id].price;
         objs[id].title = payLoad.title;
         objs[id].price = payLoad.price;
         objs[id].category = payLoad.category;
         objs[id].dateTime = payLoad.dateTime;
         localStorage.setItem("transactions", JSON.stringify(objs));
+
+        const currentAmount = JSON.parse(localStorage.getItem("currentAmount"));
+        currentAmount.currentExpenses = Number(currentAmount.currentExpenses) + Number(payLoad.price) - Number(tempPrice);
+        currentAmount.currentBalance = Number(currentAmount.currentBalance) - Number(payLoad.price) + Number(tempPrice);
+        localStorage.setItem("currentAmount", JSON.stringify(currentAmount));
         window.location.reload();
     }
     useEffect(() => {
