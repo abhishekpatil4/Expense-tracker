@@ -70,16 +70,6 @@ export const AmountCard = ({ type }) => {
                 <div className="card-wrapper">
                     <ReactModal ariaHideApp={false} isOpen={balanceModelOpen} style={{
                         content: {
-                            // display: 'flex',
-                            // justifyContent: 'center',
-                            // flexDirection: 'column',
-                            // margin: 'auto',
-                            // maxWidth: '520px',
-                            // maxHeight: '150px',
-                            // backgroundColor: '#EEEEEE',
-                            // borderRadius: '12px',
-                            // border: '0px',
-                            // padding: '1.8rem 2rem'
                             width: '80%',
                             maxWidth: '572px',
                             top: '50%',
@@ -139,16 +129,6 @@ export const AmountCard = ({ type }) => {
                 <div className="card-wrapper">
                     <ReactModal ariaHideApp={false} isOpen={expenseModelOpen} style={{
                         content: {
-                            // display: 'flex',
-                            // justifyContent: 'center',
-                            // flexDirection: 'column',
-                            // margin: 'auto',
-                            // maxWidth: '500px',
-                            // maxHeight: '300px',
-                            // backgroundColor: '#EEEEEE',
-                            // borderRadius: '12px',
-                            // border: '0px',
-                            // padding: '1.8rem 2rem'
                             width: '80%',
                             maxWidth: '572px',
                             top: '50%',

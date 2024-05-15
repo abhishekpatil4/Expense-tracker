@@ -52,7 +52,7 @@ export const ExpPiechart = () => {
             }
         };
         window.addEventListener('resize', handleResize);
-        // Cleanup function to remove the event listener when the component unmounts
+        // this used for Cleanup 
         return () => {
             window.removeEventListener('resize', handleResize);
         };
