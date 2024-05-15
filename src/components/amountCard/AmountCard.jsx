@@ -70,21 +70,32 @@ export const AmountCard = ({ type }) => {
                 <div className="card-wrapper">
                     <ReactModal ariaHideApp={false} isOpen={balanceModelOpen} style={{
                         content: {
-                            display: 'flex',
-                            justifyContent: 'center',
-                            flexDirection: 'column',
-                            margin: 'auto',
-                            maxWidth: '520px',
-                            maxHeight: '150px',
+                            // display: 'flex',
+                            // justifyContent: 'center',
+                            // flexDirection: 'column',
+                            // margin: 'auto',
+                            // maxWidth: '520px',
+                            // maxHeight: '150px',
+                            // backgroundColor: '#EEEEEE',
+                            // borderRadius: '12px',
+                            // border: '0px',
+                            // padding: '1.8rem 2rem'
+                            width: '80%',
+                            maxWidth: '572px',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translateX(-50%) translateY(-50%)',
+                            height: 'fit-content',
+                            maxHeight: '90vH',
                             backgroundColor: '#EEEEEE',
                             borderRadius: '12px',
                             border: '0px',
-                            padding: '1.8rem 2rem'
+                            padding: '2rem'
                         }
                     }}>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flexWrap: 'wrap' }}>
                             <h1>Add Balance</h1>
-                            <form onSubmit={handleAddBalance} style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
+                            <form onSubmit={handleAddBalance} style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
                                 <input required type="number" placeholder="Income Amount" style={{
                                     borderRadius: '10px',
                                     border: '0px',
@@ -128,16 +139,27 @@ export const AmountCard = ({ type }) => {
                 <div className="card-wrapper">
                     <ReactModal ariaHideApp={false} isOpen={expenseModelOpen} style={{
                         content: {
-                            display: 'flex',
-                            justifyContent: 'center',
-                            flexDirection: 'column',
-                            margin: 'auto',
-                            maxWidth: '500px',
-                            maxHeight: '300px',
+                            // display: 'flex',
+                            // justifyContent: 'center',
+                            // flexDirection: 'column',
+                            // margin: 'auto',
+                            // maxWidth: '500px',
+                            // maxHeight: '300px',
+                            // backgroundColor: '#EEEEEE',
+                            // borderRadius: '12px',
+                            // border: '0px',
+                            // padding: '1.8rem 2rem'
+                            width: '80%',
+                            maxWidth: '572px',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translateX(-50%) translateY(-50%)',
+                            height: 'fit-content',
+                            maxHeight: '90vH',
                             backgroundColor: '#EEEEEE',
                             borderRadius: '12px',
                             border: '0px',
-                            padding: '1.8rem 2rem'
+                            padding: '2rem'
                         }
                     }}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>

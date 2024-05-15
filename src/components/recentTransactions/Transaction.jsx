@@ -17,6 +17,22 @@ const getFormattedDate = (dateString) => {
 export const Transaction = ({ id, name, dateTime, price, category }) => {
     const [expenseModelOpen, setExpenseModelOpen] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
+    const [width, setWidth] = useState(10.5);
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth);
+            if (window.innerWidth < 470) {
+                setWidth(2);
+            } else {
+                setWidth(10.5);
+            }
+        };
+        window.addEventListener('resize', handleResize);
+        // Cleanup function to remove the event listener when the component unmounts
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     const handleDelete = () => {
         const arrayOfObjects = Object.values(JSON.parse(localStorage.getItem("transactions")));
         const indexToDelete = id;
@@ -184,7 +200,7 @@ export const Transaction = ({ id, name, dateTime, price, category }) => {
                     </form>
                 </div>
             </ReactModal>
-            <div style={{ display: 'flex', justifyContent: 'space-between', minWidth: '10.5rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', minWidth: `9rem`, flexWrap: 'wrap' }}>
                 {
                     category === "food" && <PiPizza style={{ fontSize: '25px', backgroundColor: '#D9D9D9', borderRadius: '100%', padding: '8px' }} />
                 }
